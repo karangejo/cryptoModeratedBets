@@ -3,6 +3,7 @@ import factory from './factory';
 import{Card,Grid,Segment,Menu,Dropdown} from 'semantic-ui-react';
 import NewBet from './newBet';
 import ManageBet from './manageBet';
+import HowToUse from './howToUse';
 
 
 class App extends Component {
@@ -29,8 +30,11 @@ class App extends Component {
 // render the information from all deployed bets to different Cards
  renderBets(){
    const items = this.state.bets.map((address,index) => {
+      var [a,b,c,d,e] = address.match(/.{1,9}/g);
+      var s = ' ';
+      var fAddress = a+s+b+s+c+s+d+s+e;
      return {
-       header: `Contract Address: ${address}`,
+       header: `Contract Address: ${fAddress}`,
        meta: `Bet Statement: ${this.state.statements[index]}`,
        description: `Bet Amount in Wei: ${this.state.amounts[index]}`,
        fluid: true,
@@ -86,6 +90,8 @@ class App extends Component {
         </Grid.Column>
         <Grid.Column>
           <Segment raised ={true} color="red">
+            <h2>How To Use This Site</h2>
+            <HowToUse/>
             <NewBet/>
           </Segment>
         </Grid.Column>

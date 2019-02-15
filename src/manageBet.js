@@ -58,26 +58,35 @@ class ManageBet extends Component {
                   ,balance: summary[5]
                   ,betStatement: summary[6]
                   ,voteCount: summary[7]
+                  ,addressArray: [address,summary[0],summary[1],summary[2],summary[3]]
                 });
 
   }
 
   // these cards display all the information for this instance of the contract
   renderCards(){
+    const fAddress = [];
+    for(var i=0; i < this.state.addressArray.length; i++){
+      var [a,b,c,d,e] = this.state.addressArray[i].match(/.{1,9}/g);
+      var s = ' ';
+      fAddress[i] = a+s+b+s+c+s+d+s+e;
+    }
+
+
 
     const items = [
     {
-      header: this.state.betAddress,
+      header: fAddress[0],
       description: 'Contract Address',
       fluid: true, raised: true, color: "green"
     },
     {
-      header: this.state.bettorAddress,
+      header: fAddress[1],
       description: 'Initial Bettor\'s Address',
       fluid: true, raised: true, color: "green"
     },
     {
-      header: this.state.betteAddress,
+      header: fAddress[2],
       description: 'Counter Bettor\'s Address',
       fluid: true, raised: true, color: "green"
     },
@@ -97,12 +106,12 @@ class ManageBet extends Component {
       fluid: true, raised: true, color: "green"
     },
     {
-      header: this.state.moderatorAddress,
+      header: fAddress[4],
       description: 'Approved Moderator\'s Address',
       fluid: true, raised: true, color: "green"
     },
     {
-      header: this.state.pendingModeratorAddress,
+      header: fAddress[3],
       description: 'Pending Moderator\'s Address',
       fluid: true, raised: true, color: "green"
     },
@@ -151,6 +160,7 @@ class ManageBet extends Component {
           <Input
             label="address"
             labelPosition="right"
+            fluid={true}
             value={this.state.winnerAddress}
             onChange={event =>
               this.setState({winnerAddress: event.target.value})}
@@ -251,7 +261,7 @@ class ManageBet extends Component {
         <Grid.Column>
           <Segment raised={true} color="green">
             <h2> Selected Bet Information </h2>
-            {this.renderCards()}
+            {this.state.addressArray && this.renderCards()}
           </Segment>
         </Grid.Column>
         <Grid.Column>

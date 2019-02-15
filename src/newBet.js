@@ -37,6 +37,7 @@ onSubmit = async (event) => {
           <Input
             label="text"
             labelPosition="right"
+            fluid={true}
             value={this.state.betStatement}
             onChange={event =>
               this.setState({betStatement: event.target.value})}
@@ -47,6 +48,7 @@ onSubmit = async (event) => {
           <Input
             label="wei"
             labelPosition="right"
+            fluid={true}
             value={this.state.betAmount}
             onChange={event =>
               this.setState({betAmount: event.target.value})}
