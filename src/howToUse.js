@@ -20,7 +20,7 @@ class HowToUse extends Component {
 
   render(){
     return(
-      <Card>
+      <Card fluid={true}>
           <Card.Content>
             <Card.Description>{text}</Card.Description>
           </Card.Content>

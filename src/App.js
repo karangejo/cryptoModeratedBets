@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import factory from './factory';
-import{Card,Grid,Segment,Menu,Dropdown} from 'semantic-ui-react';
+import{Card,Grid,Segment,Menu,Dropdown, Tab} from 'semantic-ui-react';
 import NewBet from './newBet';
 import ManageBet from './manageBet';
 import HowToUse from './howToUse';
@@ -71,32 +71,37 @@ class App extends Component {
     return <ManageBet betAddress={this.state.selectedBet} />;
   }
 
+renderTab(){
+  const panes = [
+    { menuItem: 'List Of Bets', render: () => <Tab.Pane> <Segment raised={true} color="orange">
+                                          <h2>Bets</h2>
+                                            {this.renderBets()}
+                                        </Segment> </Tab.Pane>},
+    { menuItem: 'About this App', render: () => <Tab.Pane>  <Segment raised ={true} color="red">
+                                            <h2>How To Use This Site</h2>
+                                              <HowToUse/>
+                                          </Segment></Tab.Pane>},
+
+  ]
+
+  return( <Tab panes={panes} />);
+}
+
 
   render() {
     return (
-      <div style={{backgroundColor: "#101010"}}>
+      <div>
       <hr/>
       <Grid padded={true} centered={true}>
       <Segment padded="very" circular={true}  color ="purple" raised={true} textAlign="center">
         <h1>Crypto Moderated Bets</h1>
       </Segment>
       </Grid>
-      <Grid padded={true} columns='equal'>
-        <Grid.Column>
-          <Segment raised={true} color="orange">
-            <h2>Bets</h2>
-            {this.renderBets()}
+          {this.renderTab()}
+          <Segment>
+          <NewBet/>
           </Segment>
-        </Grid.Column>
-        <Grid.Column>
-          <Segment raised ={true} color="red">
-            <h2>How To Use This Site</h2>
-            <HowToUse/>
-            <NewBet/>
-          </Segment>
-        </Grid.Column>
-      </Grid>
-      <Grid padded={true} centered={true}>
+      <Grid padded={true}>
       <Segment circular={true} raised={true} color="blue">
       <Menu vertical>
         <Dropdown item text='Choose Bet Contract'>
@@ -110,7 +115,7 @@ class App extends Component {
       {
       this.state.selectedBet && this.state.bets &&
       this.showControls()
-    }
+      }
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Bet from './bet';
-import {Form, Button, Input, Message, Card, Grid, Segment} from 'semantic-ui-react';
+import {Form, Button, Input, Message, Card, Segment,Tab} from 'semantic-ui-react';
 import web3 from './web3';
 
 let bet;
@@ -254,23 +254,28 @@ class ManageBet extends Component {
     this.setState({loading6:false});
   }
 
- // render the information cards and the controls in a grid
+  renderTab(){
+    const panes = [
+      { menuItem: 'Bet Info', render: () => <Tab.Pane>   <Segment raised={true} color="green">
+                                              <h2> Selected Bet Information </h2>
+                                              {this.state.addressArray && this.renderCards()}
+                                              </Segment> </Tab.Pane>},
+      { menuItem: 'Bet Controls', render: () => <Tab.Pane>  <Segment raised={true} color="yellow">
+                                              <h2> Selected Bet Controls </h2>
+                                              {this.renderControls()}
+                                              </Segment></Tab.Pane>},
+
+    ]
+
+    return( <Tab panes={panes} />);
+  }
+
+ // render the information cards and the controls in a tab
   render(){
     return(
-      <Grid padded={true} columns='equal'>
-        <Grid.Column>
-          <Segment raised={true} color="green">
-            <h2> Selected Bet Information </h2>
-            {this.state.addressArray && this.renderCards()}
-          </Segment>
-        </Grid.Column>
-        <Grid.Column>
-          <Segment raised={true} color="yellow">
-            <h2> Selected Bet Controls </h2>
-            {this.renderControls()}
-          </Segment>
-        </Grid.Column>
-      </Grid>
+          <div>
+          {this.renderTab()}
+          </div>
     );
   }
 }
