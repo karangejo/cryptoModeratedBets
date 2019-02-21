@@ -84,7 +84,7 @@ renderTab(){
 
   ]
 
-  return( <Tab panes={panes} />);
+  return( <Tab panes={panes} renderActiveOnly={true} />);
 }
 
 

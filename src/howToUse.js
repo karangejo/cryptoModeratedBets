@@ -7,8 +7,9 @@ class HowToUse extends Component {
   componentDidMount(){
     text = ["This is an Application for creating moderated bets using ethereum cryptocurrency."
                 + " It is deployed on Rinkeyby test network."
-                + " All the current bets are displayed on the right."
+                + " All the current bets are displayed on the previous Tab."
                 + " To make a bet scroll below and enter a clear bet statement and the amount you want to bet in wei."
+                + " You then must deposit the bet amount to be held by the smart contract"
                 + " after that just wait till someone accepts your bet."
                 + " Once a bet has been accepted then a moderator must be choosen."
                 + " The moderator must be approved by both bettors."
