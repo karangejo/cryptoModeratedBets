@@ -1,3 +1,8 @@
+CryptoModeratedBets
+
+An app to make bets on the Ethereum Rinkeby test network.
+A smart contract holds the bet balance in escrow and a moderator decides on who wins the bet.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
